@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace todoProducts.DataAccess.Context
 {
-    public class MongoContext
+    public class MongoContext : IMongoContext
     {
         private IMongoDatabase Database { get; set; }
         private readonly List<Func<Task>> _commands;
@@ -25,7 +25,7 @@ namespace todoProducts.DataAccess.Context
                 Server = new MongoServerAddress(
                     host: configuration.GetSection("MongoSettings").GetSection("Host").Value,
                     port: int.Parse(configuration.GetSection("MongoSettings").GetSection("Port").Value)),
-                UseSsl = false,
+                UseTls = false,
                 Credential = MongoCredential.CreateCredential(
                     databaseName: configuration.GetSection("MongoSettings").GetSection("DatabaseName").Value,
                     username: configuration.GetSection("MongoSettings").GetSection("Username").Value,
@@ -53,9 +53,19 @@ namespace todoProducts.DataAccess.Context
             return _commands.Count; //? jak to czytać?
         }
 
-        public IMongoCollection<T> GetCollection(string name)
+        public IMongoCollection<T> GetCollection<T>(string name)
         {
             return Database.GetCollection<T>(name);
+        }
+
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
+        }
+
+        public void AddCommand(Func<Task> func)
+        {
+            _commands.Add(func);
         }
     }
 }
