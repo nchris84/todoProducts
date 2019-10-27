@@ -25,9 +25,9 @@ namespace todoProducts.DataAccess.Repository
             return list.ToList();
         }
 
-        public async Task<T> GetById(Guid id)
+        public async Task<T> GetById(string id)
         {
-            var item = await DbSet.FindAsync(Builders<T>.Filter.Eq("id", id));
+            var item = await DbSet.FindAsync(Builders<T>.Filter.Eq("Id", id));
             return item.SingleOrDefault();
         }
 

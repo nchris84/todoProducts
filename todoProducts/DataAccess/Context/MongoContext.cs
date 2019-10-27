@@ -20,20 +20,25 @@ namespace todoProducts.DataAccess.Context
             _commands = new List<Func<Task>>();
             RegisterConventions();
 
-            MongoClientSettings settings = new MongoClientSettings
-            {
-                Server = new MongoServerAddress(
-                    host: configuration.GetSection("MongoSettings").GetSection("Host").Value,
-                    port: int.Parse(configuration.GetSection("MongoSettings").GetSection("Port").Value)),
-                UseTls = false,
-                Credential = MongoCredential.CreateCredential(
-                    databaseName: configuration.GetSection("MongoSettings").GetSection("DatabaseName").Value,
-                    username: configuration.GetSection("MongoSettings").GetSection("Username").Value,
-                    password: configuration.GetSection("MongoSettings").GetSection("Passowrd").Value)
-            };
+            var client = new MongoClient(configuration.GetSection("MongoSettings").GetSection("ConnectionString").Value);
+            Database = client.GetDatabase("coffee");
 
-            var mongoClient = new MongoClient(settings);
-            Database = mongoClient.GetDatabase(configuration.GetSection("MongoSettings").GetSection("DatabaseName").Value);
+
+
+            //MongoClientSettings settings = new MongoClientSettings
+            //{
+            //    Server = new MongoServerAddress(
+            //        host: configuration.GetSection("MongoSettings").GetSection("Host").Value,
+            //        port: int.Parse(configuration.GetSection("MongoSettings").GetSection("Port").Value)),
+            //    UseTls = false,
+            //    Credential = MongoCredential.CreateCredential(
+            //        databaseName: configuration.GetSection("MongoSettings").GetSection("DatabaseName").Value,
+            //        username: configuration.GetSection("MongoSettings").GetSection("Username").Value,
+            //        password: configuration.GetSection("MongoSettings").GetSection("Passowrd").Value)
+            //};
+
+            //var mongoClient = new MongoClient(settings);
+            //Database = mongoClient.GetDatabase(configuration.GetSection("MongoSettings").GetSection("DatabaseName").Value);
         }
 
         private void RegisterConventions()
