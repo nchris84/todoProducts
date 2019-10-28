@@ -9,7 +9,7 @@ namespace todoProducts.BusinessLogic
 {
     public interface IProductManager
     {
-        Task List(ProductRequest request, ProductResponse response);
+        Task List(ProductRequest request, ProductsResponse response);
         Task GetById(ProductRequest request, ProductResponse response);
         Task Add(ProductRequest request, ProductResponse response);
         Task Update(ProductRequest request, ProductResponse response);

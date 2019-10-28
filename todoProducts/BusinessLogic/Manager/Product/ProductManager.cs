@@ -22,7 +22,7 @@ namespace todoProducts.BusinessLogic
             _mapper = mapper;
         }
 
-        public async Task List(ProductRequest request, ProductResponse response)
+        public async Task List(ProductRequest request, ProductsResponse response)
         {
             var productList = await _uow.Repository<ProductEntity>().List();
             response.Products = _mapper.Map<IEnumerable<ProductModel>>(productList);
@@ -50,6 +50,7 @@ namespace todoProducts.BusinessLogic
             product.CreatedDate = dbProduct.CreatedDate;
             _uow.Repository<ProductEntity>().Update(product);
             await _uow.Commit();
+            response.Product = _mapper.Map<ProductModel>(product);
         }
 
         public async Task Remove(ProductRequest request, ProductResponse response)

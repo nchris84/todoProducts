@@ -14,8 +14,5 @@ namespace todoProducts.BusinessLogic.Response
 
         public bool Success { get; set; }
         public Dictionary<string,string> Errors { get; set; }
-        public string ResponseTime { get; set; } =
-            $"{DateTime.Now.ToShortDateString()} {DateTime.Now.ToShortTimeString()}";
-        public string Message { get; set; }
     }
 }

@@ -22,9 +22,9 @@ namespace todoProducts.BusinessLogic.ServiceManager.Product
             _manager = manager;
         }
 
-        public async Task<ProductResponse> List(ProductRequest request)
+        public async Task<ProductsResponse> List(ProductRequest request)
         {
-            var response = new ProductResponse();
+            var response = new ProductsResponse();
             var methodInfo = nameof(List).MethodInfo(MethodBase.GetCurrentMethod());
             await RunCodeAsync(methodInfo, request, response, async (uow) =>
             {

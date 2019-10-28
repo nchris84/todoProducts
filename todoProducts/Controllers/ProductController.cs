@@ -23,7 +23,7 @@ namespace todoProducts.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<ProductResponse>> List()
+        public async Task<ActionResult<ProductsResponse>> List()
         {
             var request = new ProductRequest();
             return await _service.List(request);
@@ -53,12 +53,17 @@ namespace todoProducts.Controllers
             return await _service.Update(request);
         }
 
-        [HttpDelete]
-        public async Task<ActionResult<ProductResponse>> RemoveProduct(string id)
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<object>> RemoveProduct(string id)
         {
             var request = new ProductRequest();
             request.Id = id;
-            return await _service.Remove(request);
+            var response = await _service.Remove(request);
+            return new
+            {
+                succes = response.Success.ToString(),
+                errors = response.Errors
+            };
         }
     }
 }

@@ -6,8 +6,8 @@ using todoProducts.BusinessLogic.Model;
 
 namespace todoProducts.BusinessLogic.Response
 {
-    public class ProductResponse: BaseResponse
+    public class ProductsResponse: BaseResponse
     {
-        public ProductModel Product { get; set; }
+        public IEnumerable<ProductModel> Products { get; set; }
     }
 }

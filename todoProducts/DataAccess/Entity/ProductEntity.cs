@@ -19,10 +19,8 @@ namespace todoProducts.DataAccess.Entity
 
         }
 
-        //[BsonId(IdGenerator = typeof(Guid))
         [BsonId]
         public string Id { get; set; }
-        //public string Id { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
         public DateTime CreatedDate { get; set; }
