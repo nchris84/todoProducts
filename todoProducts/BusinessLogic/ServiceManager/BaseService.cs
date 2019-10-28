@@ -29,7 +29,6 @@ namespace todoProducts.BusinessLogic.ServiceManager
                 {
                     _logger.LogInfo($"RequestId: {request.RequestId.ToString()} Call: {methodeInfo} at {DateTime.Now}");
                    
-                    
                     request.Validate();
                     if (request.Errors.Count != 0)
                         response.Errors = request.Errors;
