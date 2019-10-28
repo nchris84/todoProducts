@@ -48,7 +48,7 @@ namespace todoProducts.DataAccess.Repository
                 var poco = obj as IPocoUpdate;
                 poco.UpdateDate = DateTime.Now;
             }
-            _context.AddCommand(() => DbSet.ReplaceOneAsync(Builders<T>.Filter.Eq("_id", obj._Id), obj));
+            _context.AddCommand(() => DbSet.ReplaceOneAsync(Builders<T>.Filter.Eq("_id", obj.Id), obj));
         }
 
         public void Remove(T obj)
@@ -58,11 +58,11 @@ namespace todoProducts.DataAccess.Repository
                 var poco = obj as IPocoRemovable;
                 poco.UpdateDate = DateTime.Now;
                 poco.IsActive = false;
-                _context.AddCommand(() => DbSet.ReplaceOneAsync(Builders<T>.Filter.Eq("_id", obj._Id), obj));
+                _context.AddCommand(() => DbSet.ReplaceOneAsync(Builders<T>.Filter.Eq("_id", obj.Id), obj));
             }
             else
             {
-                _context.AddCommand(() => DbSet.DeleteOneAsync(Builders<T>.Filter.Eq("_id", obj._Id)));
+                _context.AddCommand(() => DbSet.DeleteOneAsync(Builders<T>.Filter.Eq("_id", obj.Id)));
             }
         }
 

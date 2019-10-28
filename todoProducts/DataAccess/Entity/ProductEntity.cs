@@ -16,11 +16,13 @@ namespace todoProducts.DataAccess.Entity
             IsActive = true;
             Name = name;
             Price = price;
+
         }
 
+        //[BsonId(IdGenerator = typeof(Guid))
         [BsonId]
-        public ObjectId _Id { get; set; }
         public string Id { get; set; }
+        //public string Id { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
         public DateTime CreatedDate { get; set; }

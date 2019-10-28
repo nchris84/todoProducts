@@ -16,36 +16,22 @@ namespace todoProducts.BusinessLogic
         private readonly IUnitOfWork _uow;
         private readonly IMapper _mapper;
 
-        public ProductManager(IUnitOfWork uow)
+        public ProductManager(IUnitOfWork uow, IMapper mapper)
         {
             _uow = uow;
+            _mapper = mapper;
         }
 
         public async Task List(ProductRequest request, ProductResponse response)
         {
             var productList = await _uow.Repository<ProductEntity>().List();
-            //response.Products = _mapper.Map<IEnumerable<ProductModel>>(productList);
-            //foreach(var item in productList)
-            //{
-            //    response.Products.Append(new ProductModel
-            //    {
-            //        Id = item.Id,
-            //        Name = item.Name,
-            //        Price = item.Price
-            //    });
-            //}
+            response.Products = _mapper.Map<IEnumerable<ProductModel>>(productList);
         }
 
         public async Task GetById(ProductRequest request, ProductResponse response)
         {
             var dbProduct = await _uow.Repository<ProductEntity>().GetById(request.Id);
-            //response.Product = _mapper.Map<ProductModel>(dbProduct);
-            response.Product = new ProductModel
-            {
-                Id = dbProduct.Id,
-                Name = dbProduct.Name,
-                Price = dbProduct.Price
-            };
+            response.Product = _mapper.Map<ProductModel>(dbProduct);
         }
 
         public async Task Add(ProductRequest request, ProductResponse response)
@@ -54,13 +40,7 @@ namespace todoProducts.BusinessLogic
             _uow.Repository<ProductEntity>().Add(product);
             await _uow.Commit();
             var dbProduct = await _uow.Repository<ProductEntity>().GetById(product.Id);
-            //response.Product = _mapper.Map<ProductModel>(dbProduct);
-            response.Product = new ProductModel
-            {
-                Id = dbProduct.Id,
-                Name = dbProduct.Name,
-                Price = dbProduct.Price
-            };
+            response.Product = _mapper.Map<ProductModel>(dbProduct);
         }
 
         public async Task Update(ProductRequest request, ProductResponse response)
