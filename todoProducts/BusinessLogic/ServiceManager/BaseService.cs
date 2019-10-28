@@ -28,8 +28,18 @@ namespace todoProducts.BusinessLogic.ServiceManager
                 try
                 {
                     _logger.LogInfo($"RequestId: {request.RequestId.ToString()} Call: {methodeInfo} at {DateTime.Now}");
-                    await action(uow);
-                    _logger.LogInfo($"Finish: {methodeInfo} at {DateTime.Now}");
+                   
+                    
+                    request.Validate();
+                    if (request.Errors.Count != 0)
+                        response.Errors = request.Errors;
+                    
+                    if (request.Errors.Count == 0 || response.Errors.Count == 0)
+                    {
+                        await action(uow);
+                        _logger.LogInfo($"Finish: {methodeInfo} at {DateTime.Now}");
+                    }
+                        
                     if (response.Errors.Count != 0)
                     {
                         foreach (var err in response.Errors)
@@ -38,7 +48,10 @@ namespace todoProducts.BusinessLogic.ServiceManager
                         }
                     }
                     else
+                    {
                         response.Success = true;
+                    }
+
                 }
                 catch (Exception ex)
                 {

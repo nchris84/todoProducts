@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using todoProducts.BusinessLogic.Validator;
 
 namespace todoProducts.BusinessLogic.Request
 {
-    public class BaseRequest
+    public class BaseRequest: BaseValidator
     {
         public Guid RequestId { get; set; }
 
@@ -13,5 +14,9 @@ namespace todoProducts.BusinessLogic.Request
         {
             RequestId = Guid.NewGuid();
         }
+
+        public virtual void Validate()
+        { }
+
     }
 }

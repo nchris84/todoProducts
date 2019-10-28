@@ -16,29 +16,12 @@ namespace todoProducts.DataAccess.Context
 
         public MongoContext(IConfiguration configuration)
         {
-            BsonDefaults.GuidRepresentation = GuidRepresentation.CSharpLegacy; //?
+            BsonDefaults.GuidRepresentation = GuidRepresentation.CSharpLegacy;
             _commands = new List<Func<Task>>();
             RegisterConventions();
 
             var client = new MongoClient(configuration.GetSection("MongoSettings").GetSection("ConnectionString").Value);
             Database = client.GetDatabase("coffee");
-
-
-
-            //MongoClientSettings settings = new MongoClientSettings
-            //{
-            //    Server = new MongoServerAddress(
-            //        host: configuration.GetSection("MongoSettings").GetSection("Host").Value,
-            //        port: int.Parse(configuration.GetSection("MongoSettings").GetSection("Port").Value)),
-            //    UseTls = false,
-            //    Credential = MongoCredential.CreateCredential(
-            //        databaseName: configuration.GetSection("MongoSettings").GetSection("DatabaseName").Value,
-            //        username: configuration.GetSection("MongoSettings").GetSection("Username").Value,
-            //        password: configuration.GetSection("MongoSettings").GetSection("Passowrd").Value)
-            //};
-
-            //var mongoClient = new MongoClient(settings);
-            //Database = mongoClient.GetDatabase(configuration.GetSection("MongoSettings").GetSection("DatabaseName").Value);
         }
 
         private void RegisterConventions()
@@ -53,9 +36,9 @@ namespace todoProducts.DataAccess.Context
 
         public async Task<int> SaveChanges()
         {
-            var commandTasks = _commands.Select(c => c()); //? c()
+            var commandTasks = _commands.Select(c => c());
             await Task.WhenAll(commandTasks);
-            return _commands.Count; //? jak to czytać?
+            return _commands.Count;
         }
 
         public IMongoCollection<T> GetCollection<T>(string name)

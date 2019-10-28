@@ -41,6 +41,7 @@ namespace todoProducts.Controllers
         public async Task<ActionResult<ProductResponse>> AddProduct([FromBody] ProductModel model)
         {
             var request = new ProductRequest();
+            model.Price = Math.Round(model.Price, 2);
             request.Product = model;
             return await _service.Add(request);
         }
@@ -49,6 +50,7 @@ namespace todoProducts.Controllers
         public async Task<ActionResult<ProductResponse>> UpdateProduct([FromBody] ProductModel model)
         {
             var request = new ProductRequest();
+            model.Price = Math.Round(model.Price, 2);
             request.Product = model;
             return await _service.Update(request);
         }

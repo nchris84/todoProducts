@@ -10,5 +10,12 @@ namespace todoProducts.BusinessLogic.Request
     {
         public string Id { get; set; }
         public ProductModel Product { get; set; }
+        public override void Validate()
+        {
+            if (Product.Name.Length > 100)
+            {
+                Errors.Add("Invalid name", "Name greater than 100 charts");
+            }
+        }
     }
 }

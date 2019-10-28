@@ -35,7 +35,7 @@ namespace todoProducts.DataAccess.Repository
         {
             if (obj is IPocoCreate)
             {
-                var poco = obj as IPocoCreate; //? po co?
+                var poco = obj as IPocoCreate;
                 poco.CreatedDate = DateTime.Now;
             }
             _context.AddCommand(() => DbSet.InsertOneAsync(obj));
@@ -65,11 +65,5 @@ namespace todoProducts.DataAccess.Repository
                 _context.AddCommand(() => DbSet.DeleteOneAsync(Builders<T>.Filter.Eq("_id", obj.Id)));
             }
         }
-
-        //? po co
-        //public void Dispose()
-        //{
-        //    _context?.Dispose();
-        //}
     }
 }
