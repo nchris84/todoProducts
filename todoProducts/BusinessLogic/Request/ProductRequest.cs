@@ -10,8 +10,6 @@ namespace todoProducts.BusinessLogic.Request
     {
         public string Id { get; set; }
         public ProductModel Product { get; set; }
-        public Guid ResultParserGuid { get; set; }
-
         public ProductRequest()
         {
             Product = new ProductModel();
