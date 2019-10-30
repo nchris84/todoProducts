@@ -12,6 +12,9 @@ using todoProducts.DataAccess.UnitOfWork;
 using todoProducts.DataAccess.Entity;
 using todoProducts.DataAccess.Repository;
 using todoProducts.BusinessLogic.Mapper;
+using NLog;
+using System;
+using System.IO;
 
 namespace todoProducts
 {
@@ -19,6 +22,7 @@ namespace todoProducts
     {
         public Startup(IConfiguration configuration)
         {
+            LogManager.LoadConfiguration(String.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
             Configuration = configuration;
         }
 

@@ -21,15 +21,9 @@ namespace todoProducts.BusinessLogic.Request
             {
                 Errors.Add("Invalid name", "Name greater than 100 charts");
             }
-            if (!string.IsNullOrWhiteSpace(Product.Id))
+            if (!string.IsNullOrWhiteSpace(Product.Id) && !Extension.Extensions.IsGuid(Product.Id) )
             {
-                try
-                {
-                    Guid newGuid = new Guid(Product.Id);
-                } catch (Exception ex)
-                {
-                    Errors.Add("Invalid Id", $"Id is incorrect, details: {ex.Message}");
-                }
+                    Errors.Add("Invalid Id", $"Id is incorrect");
             };
         }
     }

@@ -43,7 +43,7 @@ namespace todoProducts.BusinessLogic.ServiceManager
                     {
                         foreach (var err in response.Errors)
                         {
-                            _logger.LogError($"Response Error in: {methodeInfo}, \nError message: Key {err.Key} \t Value: {err.Value}");
+                            _logger.LogError($"Response Error in: {methodeInfo}, Error message: Key {err.Key} Value: {err.Value}");
                         }
                     }
                     else
@@ -55,7 +55,7 @@ namespace todoProducts.BusinessLogic.ServiceManager
                 catch (Exception ex)
                 {
                     response.Errors.Add("System Exception", ex.Message);
-                    _logger.LogError($"Exception: {methodeInfo} at {DateTime.Now}, \nException message: {ex.Message + ex.StackTrace}");
+                    _logger.LogError($"Exception: {methodeInfo} at {DateTime.Now}, Exception message: {ex.Message + ex.StackTrace}");
                 }
             }
         }
