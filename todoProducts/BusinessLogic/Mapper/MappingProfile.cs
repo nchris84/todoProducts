@@ -1,14 +1,10 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using todoProducts.BusinessLogic.Model;
 using todoProducts.DataAccess.Entity;
 
 namespace todoProducts.BusinessLogic.Mapper
 {
-    public class MappingProfile: Profile
+    public class MappingProfile : Profile
     {
         public MappingProfile()
         {

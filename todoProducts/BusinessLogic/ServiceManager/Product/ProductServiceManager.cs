@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Threading.Tasks;
 using todoProducts.BusinessLogic.Request;
 using todoProducts.BusinessLogic.Response;
-using todoProducts.BusinessLogic.ServiceManager;
-using todoProducts.BusinessLogic.ServiceManager.Product;
 using todoProducts.DataAccess.Context;
 using todoProducts.Extension;
 using todoProducts.Logger;
 
 namespace todoProducts.BusinessLogic.ServiceManager.Product
 {
-    public class ProductServiceManager: BaseService, IProductServiceManager
+    public class ProductServiceManager : BaseService, IProductServiceManager
     {
         private readonly IProductManager _manager;
 
@@ -43,7 +38,7 @@ namespace todoProducts.BusinessLogic.ServiceManager.Product
             });
             return response;
         }
-        
+
         public async Task<ProductResponse> Add(ProductRequest request)
         {
             var response = new ProductResponse();

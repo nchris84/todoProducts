@@ -1,20 +1,20 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using AutoMapper;
-using todoProducts.Logger;
-using todoProducts.BusinessLogic.ServiceManager.Product;
-using todoProducts.BusinessLogic;
-using todoProducts.DataAccess.Context;
-using todoProducts.DataAccess.UnitOfWork;
-using todoProducts.DataAccess.Entity;
-using todoProducts.DataAccess.Repository;
-using todoProducts.BusinessLogic.Mapper;
 using NLog;
 using System;
 using System.IO;
+using todoProducts.BusinessLogic;
+using todoProducts.BusinessLogic.Mapper;
+using todoProducts.BusinessLogic.ServiceManager.Product;
+using todoProducts.DataAccess.Context;
+using todoProducts.DataAccess.Entity;
+using todoProducts.DataAccess.Repository;
+using todoProducts.DataAccess.UnitOfWork;
+using todoProducts.Logger;
 
 namespace todoProducts
 {

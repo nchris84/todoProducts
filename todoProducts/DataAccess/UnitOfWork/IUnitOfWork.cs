@@ -5,7 +5,7 @@ using todoProducts.DataAccess.Repository;
 
 namespace todoProducts.DataAccess.UnitOfWork
 {
-    public interface IUnitOfWork: IDisposable
+    public interface IUnitOfWork : IDisposable
     {
         Task<bool> Commit();
 

@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using todoProducts.BusinessLogic.Model;
 using todoProducts.BusinessLogic.Request;
@@ -11,7 +9,7 @@ using todoProducts.DataAccess.UnitOfWork;
 
 namespace todoProducts.BusinessLogic
 {
-    public class ProductManager: IProductManager
+    public class ProductManager : IProductManager
     {
         private readonly IUnitOfWork _uow;
         private readonly IMapper _mapper;
